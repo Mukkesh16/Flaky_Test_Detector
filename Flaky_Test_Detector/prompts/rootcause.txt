@@ -11,8 +11,13 @@ Flakiness Score:
 Failure Logs:
 {logs}
 
-Provide:
+You MUST respond in EXACTLY this format:
 
-1. Likely Root Cause
-2. Confidence Percentage
-3. Recommended Fix
+Root Cause:
+[Your detailed root cause analysis here]
+
+Confidence:
+[A percentage, e.g. 85%]
+
+Recommended Fix:
+[Your actionable recommended fix here]
