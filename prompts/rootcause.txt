@@ -1,0 +1,21 @@
+Test Name: {test_name}
+Flakiness Score: {score}
+
+Failure Logs:
+{logs}
+
+Explain:
+1. Root Cause
+2. Confidence
+3. Recommended Fix
+
+You MUST ALWAYS respond exactly in the following format:
+
+Root Cause:
+[Your detailed root cause explanation here]
+
+Confidence:
+[Your confidence percentage here, e.g. 85%]
+
+Recommended Fix:
+[Your recommended fix here]
