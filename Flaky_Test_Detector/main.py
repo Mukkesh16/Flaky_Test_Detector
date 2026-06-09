@@ -100,7 +100,15 @@ def api_run_agent():
 async def chat(request: dict):
     # Proxy to ollama
     try:
-        response = requests.post("http://127.0.0.1:11434/api/chat", json=request, timeout=2)
+        ollama_payload = dict(request)
+        if "model" not in ollama_payload:
+            from config import OLLAMA_MODEL
+            ollama_payload["model"] = OLLAMA_MODEL
+            
+        # Ensure we don't stream for simplicity in the UI
+        ollama_payload["stream"] = False
+
+        response = requests.post("http://127.0.0.1:11434/api/chat", json=ollama_payload, timeout=3)
         response.raise_for_status()
         return response.json()
     except Exception as e:

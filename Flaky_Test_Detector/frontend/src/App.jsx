@@ -348,7 +348,17 @@ const DataTableView = ({ data }) => {
 
 const ExplanationView = ({ data }) => {
   const [selected, setSelected] = useState(data.find(d => d.score >= 75)?.test_name || data[0]?.test_name);
-  const expl = MOCK_EXPLANATIONS[selected] || MOCK_EXPLANATIONS["test_data_export"]; // Defaulting for demo
+  
+  const getExplanation = (testName) => {
+    if (MOCK_EXPLANATIONS[testName]) return MOCK_EXPLANATIONS[testName];
+    return {
+      tier: "med", confidence: 75,
+      explanation: `The test '${testName}' shows signs of intermittent failure, likely due to unpredictable latency in network requests or asynchronous state updates not resolving before assertions.`,
+      suggestions: [`Add explicit waits for UI elements or network responses in ${testName}.`, `Check for shared state leakage between test executions affecting ${testName}.`]
+    };
+  };
+  
+  const expl = getExplanation(selected);
   const testInfo = data.find(d => d.test_name === selected);
 
   return (
