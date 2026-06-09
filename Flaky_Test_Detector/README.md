@@ -132,7 +132,7 @@ React + Vite Frontend
 | Category | Technology |
 |---|---|
 | Programming Language | Python, JavaScript |
-| Frontend | React, Vite, Tailwind CSS v4 |
+| Frontend | React, Vite, Tailwind CSS v4, Axios, Lucide React, Recharts |
 | Backend API | FastAPI, Uvicorn |
 | Database | SQLite |
 | AI Model | Ollama + Llama 3 |
