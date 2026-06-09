@@ -511,18 +511,34 @@ const ChatView = () => {
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e?.preventDefault();
     if (!input.trim()) return;
+    
+    const userMessage = { role: 'user', content: input };
+    const newMessages = [...messages.map(m => ({role: m.role, content: m.text || m.content})), userMessage];
     
     setMessages(prev => [...prev, {role: 'user', text: input}]);
     setInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      setMessages(prev => [...prev, {role: 'assistant', text: `Based on the local SQLite database and current context, the test suite has an average flakiness score of 54.4%. The most critical tests to address first are 'test_data_export' and 'test_user_login'. Would you like me to run the Agent on them?`}]);
+    try {
+      const response = await axios.post("http://localhost:8000/api/chat", {
+        messages: newMessages
+      });
+      
+      if (response.data.error) {
+        setMessages(prev => [...prev, {role: 'assistant', text: `Error: ${response.data.error}`}]);
+      } else if (response.data.message && response.data.message.content) {
+        setMessages(prev => [...prev, {role: 'assistant', text: response.data.message.content}]);
+      } else {
+        setMessages(prev => [...prev, {role: 'assistant', text: "Received an empty response or unexpected format."}]);
+      }
+    } catch (err) {
+      setMessages(prev => [...prev, {role: 'assistant', text: `Failed to connect to backend API: ${err.message}`}]);
+    } finally {
       setIsTyping(false);
-    }, 1200);
+    }
   };
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
