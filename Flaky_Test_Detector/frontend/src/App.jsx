@@ -526,7 +526,8 @@ const ChatView = () => {
     if (!input.trim()) return;
     
     const userMessage = { role: 'user', content: input };
-    const newMessages = [...messages.map(m => ({role: m.role, content: m.text || m.content})), userMessage];
+    const systemMessage = { role: 'system', content: 'You are a helpful AI assistant analyzing flaky tests. Keep your answers concise.' };
+    const newMessages = [systemMessage, ...messages.map(m => ({role: m.role, content: m.text || m.content})), userMessage];
     
     setMessages(prev => [...prev, {role: 'user', text: input}]);
     setInput("");
