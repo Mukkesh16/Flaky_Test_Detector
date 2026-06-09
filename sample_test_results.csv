@@ -1,0 +1,9 @@
+test_name,status,duration_seconds,run_date
+test_login_success,pass,1.23,2026-06-01
+test_login_failure,fail,0.98,2026-06-01
+test_user_signup,pass,1.45,2026-06-01
+test_user_signup,fail,1.10,2026-06-02
+test_data_export,pass,2.30,2026-06-02
+test_data_export,fail,2.05,2026-06-02
+test_api_response,pass,0.55,2026-06-03
+test_api_response,fail,0.60,2026-06-03
