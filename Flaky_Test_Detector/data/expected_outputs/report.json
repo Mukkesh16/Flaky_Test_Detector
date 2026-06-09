@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-06-09T10:00:00.000000+00:00",
+  "total_flaky_tests": 1,
+  "tests": [
+    {
+      "test_name": "test_data_export",
+      "flakiness_score": 0.29,
+      "severity": "MEDIUM",
+      "total_runs": 175,
+      "pass_count": 50,
+      "fail_count": 125,
+      "root_cause": "The test occasionally fails due to an underlying race condition when querying large datasets from the replica database while a sync is occurring.",
+      "confidence": "94%",
+      "recommended_fix": "Implement a retry mechanism with exponential backoff for DB timeouts. Ensure the test waits for the asynchronous export job queue to empty."
+    }
+  ]
+}

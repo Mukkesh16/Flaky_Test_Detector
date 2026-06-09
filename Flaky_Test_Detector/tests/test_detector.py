@@ -55,11 +55,22 @@ def test_load_test_runs_empty_file(tmp_path):
         load_test_runs(str(filepath))
 
 def test_load_test_runs_invalid_columns(tmp_path):
-    df = pd.DataFrame({"wrong_col": [1, 2], "status": ["passed", "failed"]})
+    # The new robust parser handles invalid columns by filling in defaults
+    df = pd.DataFrame({"wrong_col": ["t1", "t2"], "status": ["passed", "failed"]})
     filepath = tmp_path / "invalid.csv"
     df.to_csv(filepath, index=False)
-    with pytest.raises(ValueError, match="Missing required columns"):
-        load_test_runs(str(filepath))
+    
+    loaded_df = load_test_runs(str(filepath))
+    
+    # It should automatically infer or default the missing columns
+    assert 'test_name' in loaded_df.columns
+    assert 'duration' in loaded_df.columns
+    assert 'timestamp' in loaded_df.columns
+    
+    # test_name should default to the first column if no name column exists
+    assert loaded_df['test_name'].iloc[0] == "t1"
+    # duration should default to 0.0
+    assert loaded_df['duration'].iloc[0] == 0.0
 
 # --- Tests for calculate_test_statistics ---
 
