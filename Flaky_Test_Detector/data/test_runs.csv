@@ -1,21 +1,9 @@
-run_id,test_name,status,execution_time_ms,timestamp
-1,test_login,PASS,1200,2026-06-01 10:00:00
-2,test_login,FAIL,3500,2026-06-01 10:05:00
-3,test_login,PASS,1100,2026-06-01 10:10:00
-4,test_login,FAIL,4000,2026-06-01 10:15:00
-5,test_login,PASS,1300,2026-06-01 10:20:00
-6,test_signup,PASS,900,2026-06-01 10:25:00
-7,test_signup,PASS,950,2026-06-01 10:30:00
-8,test_signup,PASS,910,2026-06-01 10:35:00
-9,test_payment,PASS,1400,2026-06-01 10:40:00
-10,test_payment,FAIL,5200,2026-06-01 10:45:00
-11,test_payment,PASS,1500,2026-06-01 10:50:00
-12,test_payment,FAIL,5100,2026-06-01 10:55:00
-13,test_payment,PASS,1450,2026-06-01 11:00:00
-14,test_search,PASS,800,2026-06-01 11:05:00
-15,test_search,PASS,780,2026-06-01 11:10:00
-16,test_search,PASS,790,2026-06-01 11:15:00
-17,test_profile_update,PASS,1000,2026-06-01 11:20:00
-18,test_profile_update,FAIL,3000,2026-06-01 11:25:00
-19,test_profile_update,PASS,950,2026-06-01 11:30:00
-20,test_profile_update,FAIL,3100,2026-06-01 11:35:00
+test_name,status,duration_seconds,run_date
+test_login_success,pass,1.23,2026-06-01
+test_login_failure,fail,0.98,2026-06-01
+test_user_signup,pass,1.45,2026-06-01
+test_user_signup,fail,1.10,2026-06-02
+test_data_export,pass,2.30,2026-06-02
+test_data_export,fail,2.05,2026-06-02
+test_api_response,pass,0.55,2026-06-03
+test_api_response,fail,0.60,2026-06-03

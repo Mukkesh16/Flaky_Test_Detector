@@ -1,39 +1,39 @@
 {
-  "generated_at": "2026-06-08T10:12:02.714033+00:00",
+  "generated_at": "2026-06-09T05:22:59.718115+00:00",
   "total_flaky_tests": 3,
   "tests": [
     {
-      "test_name": "payment_test",
+      "test_name": "test_api_response",
       "flakiness_score": 0.5,
       "severity": "MEDIUM",
-      "total_runs": 4,
-      "pass_count": 2,
-      "fail_count": 2,
-      "root_cause": "The root cause of this flaky test appears to be an intermittent connection issue with the payment processor API. The fact that both failures are identical, specifically a 504 Gateway Timeout error, suggests that there may be some underlying network connectivity problem or load on the API that is causing the test to fail occasionally.",
-      "confidence": "I am 92% confident in this",
-      "recommended_fix": "To mitigate this flaky test, I recommend adding some form of retry logic to handle transient failures. This could involve wrapping the API call in a try-except block with a reasonable number of retries (e.g., 3-5) and a suitable delay between attempts. Additionally, it may be worth investigating whether there are any load or timing issues on the payment processor side that could be contributing to these timeouts, and exploring potential workarounds or alternative APIs if necessary."
+      "total_runs": 2,
+      "pass_count": 1,
+      "fail_count": 1,
+      "root_cause": "[Error] Model 'llama3' not found. Run 'ollama pull llama3'.",
+      "confidence": "N/A",
+      "recommended_fix": "Unable to generate explanation."
     },
     {
-      "test_name": "login_test",
-      "flakiness_score": 0.33,
+      "test_name": "test_data_export",
+      "flakiness_score": 0.5,
       "severity": "MEDIUM",
-      "total_runs": 3,
-      "pass_count": 2,
+      "total_runs": 2,
+      "pass_count": 1,
       "fail_count": 1,
-      "root_cause": "The flaky test is caused by the use of an explicit wait for the \".welcome-dashboard\" selector to be visible, which is likely timing out due to variations in page load times or asynchronous script execution. The test is expecting a specific UI element to be present before proceeding with the login flow, but the element is not being loaded within the expected timeframe.",
-      "confidence": "85%",
-      "recommended_fix": "To resolve this flakiness, I recommend implementing an implicit wait mechanism that allows the test to continue executing even if the expected UI element takes slightly longer than expected to load. This can be achieved by using a more robust waiting strategy such as `WebDriverWait` with a `VisibilityOfElementLocated` condition.\n\nAdditionally, it would be beneficial to review the login flow and ensure that all dependencies are properly resolved before attempting to perform the login action. This may involve adjusting the test's timing or adding additional synchronization mechanisms to account for potential delays in page loading or script execution."
+      "root_cause": "[Error] Model 'llama3' not found. Run 'ollama pull llama3'.",
+      "confidence": "N/A",
+      "recommended_fix": "Unable to generate explanation."
     },
     {
-      "test_name": "search_test",
-      "flakiness_score": 0.33,
+      "test_name": "test_user_signup",
+      "flakiness_score": 0.5,
       "severity": "MEDIUM",
-      "total_runs": 3,
-      "pass_count": 2,
+      "total_runs": 2,
+      "pass_count": 1,
       "fail_count": 1,
-      "root_cause": "**\nThe root cause of the flaky test is likely due to the search functionality in the application being unreliable or timing-sensitive. The test is expecting the search results count to be greater than 0, but it's not considering the possibility that the search might return an empty result set under certain conditions. Additionally, the test might be sensitive to minor delays or variations in the search algorithm, leading to inconsistent test outcomes.\n\n**",
-      "confidence": "**\nI'd rate my confidence level at 92%. The failure log indicates a specific assertion error, which suggests that the issue is related to the search functionality rather than a general problem with the test framework. However, without further investigation into the application's search logic and any potential race conditions or edge cases, I wouldn't be able to pinpoint the exact cause with absolute certainty.\n\n**",
-      "recommended_fix": "**\nTo make this test more robust and reduce flakiness, I recommend modifying the test to wait for a reasonable amount of time before verifying the search results count. This could involve using a timeout or retry mechanism to account for potential delays in the search algorithm. Additionally, consider adding more specific assertions or expectations around the search results themselves, rather than just relying on the count being greater than 0. For example, you might check that the search results contain specific keywords or that they're not empty.\n\nThis fix should help eliminate the flakiness and make the test more reliable overall."
+      "root_cause": "[Error] Model 'llama3' not found. Run 'ollama pull llama3'.",
+      "confidence": "N/A",
+      "recommended_fix": "Unable to generate explanation."
     }
   ]
 }

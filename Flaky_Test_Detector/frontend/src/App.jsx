@@ -424,7 +424,7 @@ const AgentTerminalView = () => {
             <div className="p-4 overflow-y-auto flex-1 space-y-1.5 custom-scrollbar">
               {logs.length === 0 && <span className="text-slate-600">Waiting for agent execution...</span>}
               {logs.map((log, i) => (
-                <div key={i} className={`${log.startsWith('[ERROR]') ? 'text-rose-400' : log.startsWith('[SYSTEM]') ? 'text-teal-400' : log.startsWith('[OLLAMA]') ? 'text-pink-400' : 'text-slate-300'}`}>
+                <div key={i} className={`${log?.startsWith('[ERROR]') ? 'text-rose-400' : log?.startsWith('[SYSTEM]') ? 'text-teal-400' : log?.startsWith('[OLLAMA]') ? 'text-pink-400' : 'text-slate-300'}`}>
                   <span className="text-slate-600 select-none mr-3">{new Date().toISOString().split('T')[1].slice(0,-1)}</span>
                   {log}
                 </div>
