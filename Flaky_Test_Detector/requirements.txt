@@ -1,5 +1,8 @@
-streamlit
 pandas
 ollama
 sqlalchemy
 pytest
+fastapi
+uvicorn
+python-multipart
+requests

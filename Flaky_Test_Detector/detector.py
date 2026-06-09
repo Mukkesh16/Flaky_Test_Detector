@@ -31,10 +31,36 @@ def load_test_runs(file_path: str) -> pd.DataFrame:
     except pd.errors.EmptyDataError:
         raise pd.errors.EmptyDataError(f"The file {file_path} is empty.")
         
-    required_columns = {'test_name', 'status', 'duration', 'timestamp'}
-    if not required_columns.issubset(df.columns):
-        missing = required_columns - set(df.columns)
-        raise ValueError(f"Missing required columns in CSV: {missing}")
+    # Standardize column names based on common patterns
+    col_mapping = {
+        'duration_seconds': 'duration',
+        'time': 'duration',
+        'run_time': 'duration',
+        'run_date': 'timestamp',
+        'date': 'timestamp',
+        'result': 'status',
+        'outcome': 'status',
+        'name': 'test_name',
+        'error_type': 'status' # Log files usually list errors
+    }
+    df.rename(columns={k: v for k, v in col_mapping.items() if k in df.columns}, inplace=True)
+    
+    # Fill in missing required columns with safe defaults
+    if 'test_name' not in df.columns:
+        df['test_name'] = df.iloc[:, 0] if not df.empty and len(df.columns) > 0 else 'Unknown_Test'
+        
+    if 'status' not in df.columns:
+        df['status'] = 'failed' # Default to failed if it's just an error log
+        
+    if 'duration' not in df.columns:
+        df['duration'] = 0.0
+        
+    if 'timestamp' not in df.columns:
+        df['timestamp'] = pd.Timestamp.now()
+        
+    # Normalize statuses to 'passed' and 'failed' so the statistics logic works
+    df['status'] = df['status'].astype(str).str.lower()
+    df['status'] = df['status'].apply(lambda x: 'passed' if 'pass' in x or 'success' in x or x == 'ok' else 'failed')
         
     return df
 
